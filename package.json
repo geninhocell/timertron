@@ -1,0 +1,13 @@
+{
+  "name": "alura-timer",
+  "version": "1.0.0",
+  "author": "geninhocell@gmail.com",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ./src/main.js"
+  },
+  "dependencies": {
+    "electron": "^15.3.0"
+  }
+}
