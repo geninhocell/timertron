@@ -7,8 +7,12 @@
 ![Badge](https://img.shields.io/badge/APP-TimerTron-%23000000?style=for-the-badge&logo=ghost)
 
 ![Badge](https://img.shields.io/badge/license-MIT-brightgreen)
+![Badge](https://img.shields.io/github/repo-size/geninhocell/timertron)
+![Badge](https://img.shields.io/github/last-commit/geninhocell/timertron)
+![Badge](https://img.shields.io/github/languages/count/geninhocell/timertron)
 
 ## Aplicativo Desktop desenvolvido no curso de [Electron](https://www.electronjs.org/) da [Alura](https://www.alura.com.br/)
+
 
 Finalidade: Marcar o tempo de estudo.
 
