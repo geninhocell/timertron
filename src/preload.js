@@ -1,6 +1,7 @@
 const {
     contextBridge,
-    ipcRenderer
+    ipcRenderer,
+    shell,
 } = require("electron");
 const packageJsonInfo = require('../package.json');
 
@@ -15,8 +16,7 @@ contextBridge.exposeInMainWorld(
             let validChannels = [
               "open-window-about",
               "close-window-about",
-              "toMain",
-              "fromMain",
+              "open-link-github-external",
             ];
             if (validChannels.includes(channel)) {
                 ipcRenderer.send(channel, data);

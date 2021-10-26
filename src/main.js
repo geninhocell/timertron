@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain} = require('electron');
+const {app, BrowserWindow, ipcMain, shell} = require('electron');
 const path = require('path');
 
 let mainWindow;
@@ -50,6 +50,10 @@ ipcMain.on('open-window-about', () => {
 
 ipcMain.on('close-window-about', () => {
   aboutWindow.close();
+});
+
+ipcMain.on('open-link-github-external', () => {
+  shell.openExternal("https://github.com/geninhocell");
 });
 
 // ipcMain.on('toMain', () => {
