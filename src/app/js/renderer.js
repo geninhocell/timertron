@@ -12,10 +12,3 @@ buttonPlay.addEventListener('click', function(){
   window.api.timerStart(time);
   buttonPlay.src = imgs[0];
 });
-
-window.api.receive("time-start-from-main", (data) => {
-  console.log(`Received ${JSON.stringify(data)} from main process`);
-});
-
-// window.api.send("toMain", "some data");
-

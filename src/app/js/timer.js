@@ -5,11 +5,14 @@ function formatSecondsToHours(seconds){
 };
 
 let seconds;
+let intervalId;
 module.exports = {
   start(el){
     let time = moment.duration(el.textContent);
     seconds = time.asSeconds();
-    setInterval(() => {
+
+    clearInterval(intervalId);
+    intervalId = setInterval(() => {
       seconds++;
       el.textContent = formatSecondsToHours(seconds);
     }, 1000);
