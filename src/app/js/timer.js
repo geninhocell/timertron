@@ -18,6 +18,6 @@ module.exports = {
     }, 1000);
   },
   stop(){
-
+    clearInterval(intervalId);
   },
 }

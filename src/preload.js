@@ -10,7 +10,10 @@ const timer = require('./app/js/timer');
 contextBridge.exposeInMainWorld(
   "api",
   {
-    timerStart: timer.start,
+    timer: {
+      start: timer.start,
+      stop: timer.stop,
+    },
     send: (channel, data) => {
       // whitelist channels
       let validChannels = [

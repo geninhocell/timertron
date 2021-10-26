@@ -7,8 +7,15 @@ linkAbout.addEventListener('click', function(){
 });
 
 let imgs = ["img/play-button.svg", "img/stop-button.svg"];
+let play = false;
 buttonPlay.addEventListener('click', function(){
+  if(play){
+    window.api.timer.stop();
+    play = false;
+  }else{
+    window.api.timer.start(time);
+    play = true;
+  }
   imgs.reverse();
-  window.api.timerStart(time);
   buttonPlay.src = imgs[0];
 });
