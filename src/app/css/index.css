@@ -14,7 +14,7 @@ width: 100%;
 font-family: 'Roboto', sans-serif;
 background: url(../img/texture.png) top left repeat;
 }
-.titulo{
+.title{
  color: #5271FF;
  text-transform: capitalize;
  text-align: center;
@@ -29,7 +29,7 @@ background: url(../img/texture.png) top left repeat;
  margin-top: 30px;
 }
 
-.relogio{
+.watch{
  display: inline-block;
  width: 75%;
  text-align: center;
@@ -38,7 +38,7 @@ background: url(../img/texture.png) top left repeat;
  background-color: #879CFF;
 }
 
-.controles{
+.controls{
  width: 25%;
  height: 75%;
  /*margin-bottom: 5px;*/
@@ -47,20 +47,20 @@ background: url(../img/texture.png) top left repeat;
 
 }
 
-.botao-play{
+.button-play{
  width: 65%;
  padding-top: 13px;
  margin: 0 auto;
  display: block;
 }
-.tempo{
+.time{
  font-size: 5.5em;
  color: #FFFFFF;
  display: inline-block;
  padding-top: 8px;
 }
 
-.curso-container{
+.course-container{
  height: 25%;
  width: 100%;
  text-align: center;
@@ -68,7 +68,7 @@ background: url(../img/texture.png) top left repeat;
  background-color: #97A7F2;
 }
 
-.curso{
+.course{
  display: inline-block;
  padding-top: 5px;
  font-size: 1.3em;
@@ -82,7 +82,7 @@ background: url(../img/texture.png) top left repeat;
  height: 100%;
 }
 
-.botoes{
+.buttons{
  width: 30px;
  display: block;
  position: absolute;

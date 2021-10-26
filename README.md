@@ -13,7 +13,6 @@
 
 ## Aplicativo Desktop desenvolvido no curso de [Electron](https://www.electronjs.org/) da [Alura](https://www.alura.com.br/)
 
-
 Finalidade: Marcar o tempo de estudo.
 
 ### Pré-requisitos
@@ -21,6 +20,12 @@ Finalidade: Marcar o tempo de estudo.
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
 [Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
+
+- Clonar repositorio
+
+```bash
+git clone https://github.com/geninhocell/timertron.git
+```
 
 - Instalar dependencias.
 
