@@ -25,6 +25,7 @@ contextBridge.exposeInMainWorld(
         "close-window-about",
         "open-link-github-external",
         "course-stop",
+        "course-add",
       ];
       if (validChannels.includes(channel)) {
         ipcRenderer.send(channel, data);

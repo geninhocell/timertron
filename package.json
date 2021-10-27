@@ -1,11 +1,12 @@
 {
   "name": "timertron",
+  "productName": "Timer Tron",
   "version": "0.1.1",
   "author": "geninhocell@gmail.com",
-  "main": "index.js",
+  "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "start": "electron ./src/main.js"
+    "start": "electron ."
   },
   "dependencies": {
     "electron": "^15.3.0",

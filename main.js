@@ -1,9 +1,9 @@
 const {app, BrowserWindow, ipcMain, shell, Tray, Menu} = require('electron');
 const path = require('path');
-const database = require('./database');
-const template = require('./template');
+const database = require('./src/database');
+const template = require('./src/template');
 
-const iconPath = path.resolve(__dirname, 'app', 'img', 'icon-tray.png');
+const iconPath = path.resolve(__dirname, 'src', 'app', 'img', 'icon-tray.png');
 
 let mainWindow;
 let tray = null;
@@ -16,7 +16,7 @@ async function createWindow() {
       nodeIntegration: false, // is default value after Electron v5
       contextIsolation: true, // protect against prototype pollution
       enableRemoteModule: false, // turn off remote
-      preload: path.join(__dirname, "preload.js") // use a preload script
+      preload: path.join(__dirname, 'src', "preload.js") // use a preload script
     },
   });
 
@@ -27,8 +27,36 @@ async function createWindow() {
 
   tray.setContextMenu(trayMenu);
 
+  let templateMenu = [
+    {
+      label: 'Meu Menu',
+      submenu: [
+        {
+          label: 'Item 1',
+        },
+        {
+          label: 'Item 2',
+        },
+      ],
+    },
+  ];
 
-  mainWindow.loadURL(`file://${__dirname}/app/index.html`);
+  if(process.platform === 'darwin'){
+    templateMenu.unshift({
+      label: app.getName(),
+      submenu: [
+        {
+          label: 'O MAC É COMPLICA...',
+        },
+      ],
+    });
+  }
+
+  let mainMenu = Menu.buildFromTemplate(templateMenu);
+
+  Menu.setApplicationMenu(mainMenu);
+
+  mainWindow.loadURL(`file://${__dirname}/src/app/index.html`);
 };
 
 app.on('ready', createWindow);
@@ -48,7 +76,7 @@ ipcMain.on('open-window-about', () => {
         nodeIntegration: false, // is default value after Electron v5
         contextIsolation: true, // protect against prototype pollution
         enableRemoteModule: false, // turn off remote
-        preload: path.join(__dirname, "preload.js") // use a preload script
+        preload: path.join(__dirname, "src", "preload.js") // use a preload script
       },
       frame: false, // retirar botões
     });
@@ -58,7 +86,7 @@ ipcMain.on('open-window-about', () => {
     });
   }
 
-  aboutWindow.loadURL(`file://${__dirname}/app/about.html`);
+  aboutWindow.loadURL(`file://${__dirname}/src/app/about.html`);
 });
 
 ipcMain.on('close-window-about', () => {
@@ -71,4 +99,11 @@ ipcMain.on('open-link-github-external', () => {
 
 ipcMain.on('course-stop', (event, data) => {
   database.saveData(data.course, data.time)
+});
+
+ipcMain.on('course-add', (event, newCourse) => {
+  let newTrayMenuTemplate = template.courseAddTrayTemplate(mainWindow, newCourse);
+  let newTrayMenu = Menu.buildFromTemplate(newTrayMenuTemplate);
+
+  tray.setContextMenu(newTrayMenu);
 });

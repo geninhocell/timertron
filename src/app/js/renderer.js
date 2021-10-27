@@ -2,6 +2,8 @@ let linkAbout = document.querySelector('#link-about');
 let buttonPlay = document.querySelector('.button-play');
 let time = document.querySelector('.time');
 let course = document.querySelector('.course');
+let buttonAdd = document.querySelector('.button-add');
+let fieldAdd = document.querySelector('.field-add');
 
 linkAbout.addEventListener('click', function(){
     window.api.send("open-window-about", "some data");
@@ -35,4 +37,12 @@ window.api.on('toggle-course', (courseName) => {
       time.textContent = data.time;
     });
   course.textContent = courseName;
+});
+
+buttonAdd.addEventListener('click', () => {
+  let newCourse = fieldAdd.value;
+  course.textContent = newCourse;
+  time.textContent = '00:00:00';
+  fieldAdd.value = '';
+  window.api.send('course-add', newCourse);
 });

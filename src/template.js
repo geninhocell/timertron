@@ -1,5 +1,6 @@
 const database = require('./database');
 
+let initialTemplate = [];
 module.exports = {
   generateTrayTemplate: (window) => {
     let template = [
@@ -24,6 +25,19 @@ module.exports = {
       template.push(menuItem);
     });
 
+    initialTemplate = template;
     return template;
+  },
+  courseAddTrayTemplate: (window, newCourse) => {
+    initialTemplate.push({
+      label: newCourse,
+      type: 'radio',
+      checked: true,
+      click: () => {
+        window.send('toggle-course', newCourse);
+      },
+    });
+
+    return initialTemplate;
   },
 }
