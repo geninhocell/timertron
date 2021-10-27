@@ -6,9 +6,10 @@ function formatSecondsToHours(seconds){
 
 let seconds;
 let intervalId;
+let time;
 module.exports = {
   start(el){
-    let time = moment.duration(el.textContent);
+    time = moment.duration(el.textContent);
     seconds = time.asSeconds();
 
     clearInterval(intervalId);

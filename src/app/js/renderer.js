@@ -1,6 +1,7 @@
 let linkAbout = document.querySelector('#link-about');
 let buttonPlay = document.querySelector('.button-play');
 let time = document.querySelector('.time');
+let course = document.querySelector('.course');
 
 linkAbout.addEventListener('click', function(){
     window.api.send("open-window-about", "some data");
@@ -12,6 +13,7 @@ buttonPlay.addEventListener('click', function(){
   if(play){
     window.api.timer.stop();
     play = false;
+    window.api.send("course-stop", {course: course.textContent, time: time.textContent});
   }else{
     window.api.timer.start(time);
     play = true;
@@ -19,3 +21,10 @@ buttonPlay.addEventListener('click', function(){
   imgs.reverse();
   buttonPlay.src = imgs[0];
 });
+
+window.onload = () => {
+  window.api.database.getData(course.textContent)
+    .then(data => {
+      time.textContent = data.time;
+    });
+}

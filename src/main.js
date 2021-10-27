@@ -1,7 +1,11 @@
-const {app, BrowserWindow, ipcMain, shell} = require('electron');
+const {app, BrowserWindow, ipcMain, shell, Tray} = require('electron');
 const path = require('path');
+const database = require('./database');
+
+const iconPath = path.resolve(__dirname, 'app', 'img', 'icon-tray.png');
 
 let mainWindow;
+let tray = null;
 async function createWindow() {
   mainWindow = new BrowserWindow({
     width: 600,
@@ -14,6 +18,8 @@ async function createWindow() {
       preload: path.join(__dirname, "preload.js") // use a preload script
     },
   });
+
+  tray = new Tray(iconPath);
 
   mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 };
@@ -54,6 +60,10 @@ ipcMain.on('close-window-about', () => {
 
 ipcMain.on('open-link-github-external', () => {
   shell.openExternal("https://github.com/geninhocell");
+});
+
+ipcMain.on('course-stop', (event, data) => {
+  database.saveData(data.course, data.time)
 });
 
 // ipcMain.on('toMain', () => {

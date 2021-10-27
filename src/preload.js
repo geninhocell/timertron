@@ -4,12 +4,16 @@ const {
 } = require("electron");
 const packageJsonInfo = require('../package.json');
 const timer = require('./app/js/timer');
+const database = require('./database');
 
 // Expose protected methods that allow the renderer process to use
 // the ipcRenderer without exposing the entire object
 contextBridge.exposeInMainWorld(
   "api",
   {
+    database: {
+      getData: database.getData,
+    },
     timer: {
       start: timer.start,
       stop: timer.stop,
@@ -20,6 +24,7 @@ contextBridge.exposeInMainWorld(
         "open-window-about",
         "close-window-about",
         "open-link-github-external",
+        "course-stop",
       ];
       if (validChannels.includes(channel)) {
         ipcRenderer.send(channel, data);
@@ -52,4 +57,4 @@ window.addEventListener('DOMContentLoaded', () => {
   for (const type of ['name', 'version', 'author', 'versionElectron', 'license']) {
     replaceText(`${type}`, info[type])
   }
-})
+});
