@@ -40,10 +40,21 @@ window.onload = () => {
 }
 
 window.api.on('toggle-course', (courseName) => {
+  window.api.timer.stop();
+  buttonPlay.src = "img/play-button.svg";
+  imgs.reverse();
+  play = false;
+
   window.api.database.getData(courseName)
     .then(data => {
+      console.log('data', data)
       time.textContent = data.time;
+    })
+    .catch(() => {
+      console.log('Curso ainda não possui o JSON!');
+      time.textContent = '00:00:00';
     });
+
   course.textContent = courseName;
 });
 
@@ -53,6 +64,11 @@ window.api.on('start-or-stop-play', () => {
 });
 
 buttonAdd.addEventListener('click', () => {
+  if(fieldAdd.value === ''){
+    console.error('Campo de curso vazio!');
+    return;
+  }
+
   let newCourse = fieldAdd.value;
   course.textContent = newCourse;
   time.textContent = '00:00:00';

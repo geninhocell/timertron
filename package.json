@@ -1,7 +1,7 @@
 {
   "name": "timertron",
   "productName": "Timer Tron",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "geninhocell@gmail.com",
   "main": "main.js",
   "license": "MIT",
