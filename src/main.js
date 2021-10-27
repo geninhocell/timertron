@@ -1,6 +1,7 @@
-const {app, BrowserWindow, ipcMain, shell, Tray} = require('electron');
+const {app, BrowserWindow, ipcMain, shell, Tray, Menu} = require('electron');
 const path = require('path');
 const database = require('./database');
+const template = require('./template');
 
 const iconPath = path.resolve(__dirname, 'app', 'img', 'icon-tray.png');
 
@@ -20,6 +21,12 @@ async function createWindow() {
   });
 
   tray = new Tray(iconPath);
+  let trayMenu = Menu.buildFromTemplate(
+    template.generateTrayTemplate(mainWindow)
+  );
+
+  tray.setContextMenu(trayMenu);
+
 
   mainWindow.loadURL(`file://${__dirname}/app/index.html`);
 };
@@ -65,13 +72,3 @@ ipcMain.on('open-link-github-external', () => {
 ipcMain.on('course-stop', (event, data) => {
   database.saveData(data.course, data.time)
 });
-
-// ipcMain.on('toMain', () => {
-//   console.log('test')
-//   const info = {
-//     name: packageJsonInfo.name,
-//     version: packageJsonInfo.version,
-//     author: packageJsonInfo.author,
-//   }
-//   mainWindow.send('fromMain', info)
-// });

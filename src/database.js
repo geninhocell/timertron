@@ -37,4 +37,14 @@ module.exports = {
     let pathArchive = path.resolve(__dirname, 'data', `${filename}.json`);
     return jsonfile.readFile(pathArchive)
   },
+  getLabels: () => {
+    let pathDir = path.resolve(__dirname, 'data');
+    let labels = fs.readdirSync(pathDir);
+    let labelsFilterGit = labels.filter(l => l !== '.gitignore');
+    let labelsFormatted = labelsFilterGit.map(l => {
+      return l.substr(0, l.lastIndexOf('.'));
+    });
+
+    return labelsFormatted;
+  },
 };

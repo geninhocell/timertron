@@ -28,3 +28,11 @@ window.onload = () => {
       time.textContent = data.time;
     });
 }
+
+window.api.on('toggle-course', (courseName) => {
+  window.api.database.getData(courseName)
+    .then(data => {
+      time.textContent = data.time;
+    });
+  course.textContent = courseName;
+});
