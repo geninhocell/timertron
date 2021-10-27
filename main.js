@@ -1,4 +1,12 @@
-const {app, BrowserWindow, ipcMain, shell, Tray, Menu} = require('electron');
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  shell,
+  Tray,
+  Menu,
+  globalShortcut,
+} = require('electron');
 const path = require('path');
 const database = require('./src/database');
 const template = require('./src/template');
@@ -31,6 +39,10 @@ async function createWindow() {
   let templateMainMenu = template.generateMainMenuTemplate(app.getName());
   let mainMenu = Menu.buildFromTemplate(templateMainMenu);
   Menu.setApplicationMenu(mainMenu);
+
+  globalShortcut.register('CmdOrCtrl+Shift+S', () => {
+    mainWindow.send('start-or-stop-play');
+  });
 
   // mainWindow.openDevTools();
   mainWindow.loadURL(`file://${__dirname}/src/app/index.html`);

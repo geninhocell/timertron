@@ -16,9 +16,17 @@ buttonPlay.addEventListener('click', function(){
     window.api.timer.stop();
     play = false;
     window.api.send("course-stop", {course: course.textContent, time: time.textContent});
+    new Notification('Timer Tron', {
+      body: `Curso ${course.textContent} parado!!`,
+      icon: 'img/stop-button.png',
+    });
   }else{
     window.api.timer.start(time);
     play = true;
+    new Notification('Timer Tron', {
+      body: `Curso ${course.textContent} iniciado!!`,
+      icon: 'img/play-button.png',
+    });
   }
   imgs.reverse();
   buttonPlay.src = imgs[0];
@@ -37,6 +45,11 @@ window.api.on('toggle-course', (courseName) => {
       time.textContent = data.time;
     });
   course.textContent = courseName;
+});
+
+window.api.on('start-or-stop-play', () => {
+  let click = new MouseEvent('click');
+  buttonPlay.dispatchEvent(click);
 });
 
 buttonAdd.addEventListener('click', () => {

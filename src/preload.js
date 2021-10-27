@@ -32,7 +32,11 @@ contextBridge.exposeInMainWorld(
       }
     },
     on: (channel, func) => {
-      let validChannels = ["toggle-course"];
+      let validChannels = [
+        "toggle-course",
+        "start-or-stop-play",
+      ];
+
       if (validChannels.includes(channel)) {
         // Deliberately strip event as it includes `sender`
         ipcRenderer.on(channel, (event, ...args) => func(...args));

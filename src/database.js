@@ -3,7 +3,6 @@ const fs = require('fs');
 const path = require('path');
 
 const createArchive = (filename, archive) => {
-  console.log(filename, archive)
   return jsonfile.writeFile(filename, archive)
    .then(response => console.log('Archive created!', response))
    .catch(e => console.error(e));
@@ -23,7 +22,6 @@ const addTimeToCourse = (archive, studiedTime) => {
 module.exports = {
   saveData: (filename, data) => {
     let pathArchive = path.resolve(__dirname, 'data', `${filename}.json`);
-    console.log(pathArchive)
     if(fs.existsSync(pathArchive)){
       addTimeToCourse(pathArchive, data);
     }else{
