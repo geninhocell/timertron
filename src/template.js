@@ -1,3 +1,4 @@
+const {ipcMain} = require('electron');
 const database = require('./database');
 
 let initialTemplate = [];
@@ -27,6 +28,46 @@ module.exports = {
 
     initialTemplate = template;
     return template;
+  },
+  generateMainMenuTemplate: (applicationName) => {
+    let templateMenu = [
+      {
+        label: 'Ver',
+        submenu: [
+          {
+            role: 'reload',
+          },
+          {
+            role: 'toggledevtools',
+          }
+        ],
+      },
+      {
+        label: 'Sobre',
+        submenu: [
+          {
+            label: 'Sobre o Timer Tron',
+            accelerator: 'CommandOrControl+I',
+            click: () => {
+              ipcMain.emit('open-window-about')
+            }
+          },
+        ],
+      },
+    ];
+
+    if(process.platform === 'darwin'){
+      templateMenu.unshift({
+        label: applicationName,
+        submenu: [
+          {
+            label: 'O MAC É COMPLICA...',
+          },
+        ],
+      });
+    }
+
+    return templateMenu;
   },
   courseAddTrayTemplate: (window, newCourse) => {
     initialTemplate.push({

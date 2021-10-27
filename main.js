@@ -9,8 +9,8 @@ let mainWindow;
 let tray = null;
 async function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 600,
-    height: 400,
+    width: 1000,
+    height: 600,
     titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: false, // is default value after Electron v5
@@ -27,35 +27,12 @@ async function createWindow() {
 
   tray.setContextMenu(trayMenu);
 
-  let templateMenu = [
-    {
-      label: 'Meu Menu',
-      submenu: [
-        {
-          label: 'Item 1',
-        },
-        {
-          label: 'Item 2',
-        },
-      ],
-    },
-  ];
 
-  if(process.platform === 'darwin'){
-    templateMenu.unshift({
-      label: app.getName(),
-      submenu: [
-        {
-          label: 'O MAC É COMPLICA...',
-        },
-      ],
-    });
-  }
-
-  let mainMenu = Menu.buildFromTemplate(templateMenu);
-
+  let templateMainMenu = template.generateMainMenuTemplate(app.getName());
+  let mainMenu = Menu.buildFromTemplate(templateMainMenu);
   Menu.setApplicationMenu(mainMenu);
 
+  // mainWindow.openDevTools();
   mainWindow.loadURL(`file://${__dirname}/src/app/index.html`);
 };
 
