@@ -47,6 +47,32 @@ yarn
 yarn start
 ```
 
+### Executar build e executar
+
+- build para linux
+
+```bash
+yarn build:linux
+```
+
+- entrar na pasta dist/timertron-linux-x64
+
+```bash
+cd dist/timertron-linux-x64
+```
+
+- executar
+
+```bash
+./timertron
+```
+
+### Shortcuts
+
+```bash
+Ctrl+Shift+s (Play)|(Pause)
+```
+
 ### 🛠 Tecnologias
 
 As seguintes ferramentas foram usadas na construção do projeto:
@@ -54,6 +80,6 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [Node.js](https://nodejs.org/en/)
 - [Electron](https://www.electronjs.org/)
 
-<h4 align="center">
+<!-- <h4 align="center">
 	🚧  TimerTron 🚀 Em construção...  🚧
-</h4>
+</h4> -->

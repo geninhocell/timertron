@@ -1,17 +1,15 @@
 {
   "name": "timertron",
   "productName": "Timer Tron",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "author": "geninhocell@gmail.com",
   "main": "main.js",
   "license": "MIT",
   "scripts": {
     "start": "electron .",
-    "build:all": "electron-packager ./ timertron --platform=darwin,linux,win32 --arch=x64 --icon=icon/icon --out=dist/",
-    "build:mac": "electron-packager ./ timertron --platform=darwin --arch=x64 --out=dist/",
     "build:linux": "electron-packager ./ timertron --platform=linux --arch=x64 --icon=icon/icon.png --out=dist/"
   },
-  "devDependencies": {
+  "dependencies": {
     "electron-packager": "^15.4.0",
     "electron": "^15.3.0",
     "jsonfile": "^6.1.0",
